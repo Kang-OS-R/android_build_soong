@@ -20,7 +20,7 @@ import (
 	"runtime"
 	"strings"
 
-	"revengeos/soong/android"
+	"kangos/soong/android"
 
 	"github.com/google/blueprint/proptools"
 )
@@ -134,8 +134,8 @@ type variableProperties struct {
 			Exclude_srcs []string `android:"arch_variant"`
 		} `android:"arch_variant"`
 
-		// include Revengeos variables
-		Revengeos android.Product_variables
+		// include Kangos variables
+		Kangos android.Product_variables
 	} `android:"arch_variant"`
 }
 
@@ -342,8 +342,8 @@ type productVariables struct {
 
 	BoardUsesRecoveryAsBoot *bool `json:",omitempty"`
 
-	// include Revengeos variables
-	Revengeos android.ProductVariables
+	// include Kangos variables
+	Kangos android.ProductVariables
 }
 
 func boolPtr(v bool) *bool {
@@ -601,8 +601,8 @@ func createVariableProperties(moduleTypeProps []interface{}, productVariables in
 func createVariablePropertiesType(moduleTypeProps []interface{}, productVariables interface{}) reflect.Type {
 	typ, _ := proptools.FilterPropertyStruct(reflect.TypeOf(productVariables),
 		func(field reflect.StructField, prefix string) (bool, reflect.StructField) {
-			if strings.HasPrefix(prefix, "Product_variables.Revengeos") {
-				// Convert Product_variables.Revengeos.Foo to Revengeos.Foo
+			if strings.HasPrefix(prefix, "Product_variables.Kangos") {
+				// Convert Product_variables.Kangos.Foo to Kangos.Foo
 				_, prefix = splitPrefix(prefix)
 			}
 
